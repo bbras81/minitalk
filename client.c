@@ -10,17 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "minitalk.h"
+#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
-	int server_pid;
+	int	server_pid;
+
 	if (argc == 3)
 	{
-		server_pid = 	
+		server_pid = ft_atoi(argv[2]);
 	}
-
-
+	printf("User Pid: %d", server_pid);
 	while (1)
 	{
 		sleep(1);
