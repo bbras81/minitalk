@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brunmigu <brunmigu@students.42porto.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 13:08:26 by brunmigu          #+#    #+#             */
-/*   Updated: 2025/06/06 13:14:46 by brunmigu         ###   ########.fr       */
+/*   Created: 2025/06/06 13:13:23 by brunmigu          #+#    #+#             */
+/*   Updated: 2025/06/06 13:14:39 by brunmigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef MINITALK_H
+# define MINITALK_H
+
+#include <unistd.h>
 
 
-int	main(int argc, char **argv)
-{
-	int server_pid;
-	if (argc == 3)
-	{
-		server_pid = 	
-	}
-
-
-	while (1)
-	{
-		sleep(1);
-	}
-	return (0);
-}
+#endif
