@@ -1,35 +1,32 @@
 #include <unistd.h>
 
-void	print_bits(int num)
+void	print_bits(char *message)
 {
 	int	i;
 
-	i = 0;
-	while (i++ < 7)
+	int letter;
+
+	letter = 0;
+	while (message[letter])
 	{
-		if (num & (1 >> i) & 1)
+		i = -1;
+		while (++i < 8)
 		{
-			write(1, "1", 1);
+			if (((unsigned char)(message[letter] >> (7 - i)) & 1) == 0)	
+				write(1, "0", 1);
+			else if (((unsigned char)(message[letter] >> (7 - i)) & 1) == 1)	
+				write(1, "1", 1);
 		}
-		else
-		{
-			write(1, "0", 1);
-		}
+		 letter ++;
+		write(1, " ", 1);
 	}
-	write(1, " ", 1);
 }
 
 int	main(void)
 {
 	char	*str;
-	int		counter;
 
 	str = "Hello, World!";
-	counter = 0;
-	while (str[counter] != '\0')
-	{
-		print_bits((char)str[counter]);
-		counter++;
-	}
+	print_bits(str);
 	return (0);
 }
