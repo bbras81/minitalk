@@ -4,10 +4,10 @@ void	print_bits(int num)
 {
 	int	i;
 
-	i = 8;
-	while (i-- > 0)
+	i = 0;
+	while (i++ < 7)
 	{
-		if (num & (1 << i))
+		if (num & (1 >> i) & 1)
 		{
 			write(1, "1", 1);
 		}
