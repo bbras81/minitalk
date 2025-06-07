@@ -15,10 +15,10 @@
 # ========================== #
 
 NAME_CLIENT = client
-NAME_SERVER = server
+#NAME_SERVER = server
 
 SRCS_CLIENT = client.c libft/ft_atoi.c
-SRCS_SERVER = server.c
+#SRCS_SERVER = server.c
 
 OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
 OBJS_SERVER = $(SRCS_SERVER:.c=.o)
@@ -38,9 +38,9 @@ $(NAME_CLIENT): $(OBJS_CLIENT)
 	@$(CC) $(CFLAGS) $(OBJS_CLIENT) -o $(NAME_CLIENT)
 	@echo "✅ $(NAME_CLIENT) compilado com sucesso!"
 
-$(NAME_SERVER): $(OBJS_SERVER)
-	@$(CC) $(CFLAGS) $(OBJS_SERVER) -o $(NAME_SERVER)
-	@echo "✅ $(NAME_SERVER) compilado com sucesso!"
+#$(NAME_SERVER): $(OBJS_SERVER)
+#	@$(CC) $(CFLAGS) $(OBJS_SERVER) -o $(NAME_SERVER)
+#	@echo "✅ $(NAME_SERVER) compilado com sucesso!"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@

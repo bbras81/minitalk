@@ -22,9 +22,5 @@ int	main(int argc, char **argv)
 		server_pid = ft_atoi(argv[2]);
 	}
 	printf("User Pid: %d", server_pid);
-	while (1)
-	{
-		sleep(1);
-	}
 	return (0);
 }
