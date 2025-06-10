@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunmigu <brunmigu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brunmigu <brunmigu@students.42porto.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 13:13:23 by brunmigu          #+#    #+#             */
-/*   Updated: 2025/06/10 11:48:31 by brunmigu         ###   ########.fr       */
+/*   Created: 2025/06/10 11:42:06 by brunmigu          #+#    #+#             */
+/*   Updated: 2025/06/10 11:51:04 by brunmigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "minitalk.h"
 
-# include "libft/libft.h"
-# include <signal.h>
-# include <unistd.h>
-#endif
+int	main(void)
+{
+	ft_printf("Welcome to brunmigu's Server :-)\n");
+	ft_printf("Server PID: %d\n", getpid());
+	while (1)
+		usleep(50);
+	return (0);
+}
