@@ -12,7 +12,6 @@
 
 #include "libft.h"
 
-
 static int	ft_getformat(char c, va_list args)
 {
 	int	counter;

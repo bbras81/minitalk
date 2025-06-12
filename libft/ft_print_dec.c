@@ -12,7 +12,6 @@
 
 #include "libft.h"
 
-
 int	ft_print_dec(int nbr)
 {
 	int	counter;
