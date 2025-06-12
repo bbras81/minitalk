@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 void	sending_signals(int pid, char *message)
 {
@@ -25,9 +28,9 @@ void	sending_signals(int pid, char *message)
 		{
 			if (((unsigned char)(message[letter] >> (7 - i)) & 1) == 0)
 				kill(pid, SIGUSR1);
-			else if (((unsigned char)(message[letter] >> (7 - i)) & 1) == 1)
+			else
 				kill(pid, SIGUSR2);
-			usleep(50);
+			usleep(200);
 		}
 		letter++;
 	}
@@ -35,7 +38,7 @@ void	sending_signals(int pid, char *message)
 	while (i++ < 8)
 	{
 		kill(pid, SIGUSR1);
-		usleep(50);
+		usleep(200);
 	}
 }
 
@@ -44,22 +47,18 @@ int	main(int argc, char **argv)
 	int		server_pid;
 	char	*message;
 
-	if (argc == 3)
+	if (argc != 3)
 	{
-		server_pid = ft_atoi(argv[1]);
-		if (!server_pid)
-		{
-			ft_printf("[ERROR] bad argument!");
-			return (0);
-		}
-		message = argv[2];
-		if (message[0] == 0)
-		{
-			ft_printf("[ERROR] Bad string");
-			return (0);
-		}
-		sending_signals(server_pid, message);
+		printf("Usage: %s <server_pid> <message>\n", argv[0]);
+		return (1);
 	}
-	ft_printf("User Pid: %d", server_pid);
+	server_pid = atoi(argv[1]);
+	if (server_pid <= 0)
+		return (1);
+	message = argv[2];
+	if (message[0] == '\0')
+		return (1);
+	sending_signals(server_pid, message);
+	printf("Message sent to PID %d\n", server_pid);
 	return (0);
 }
