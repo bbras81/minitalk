@@ -12,7 +12,6 @@
 
 #include "libft.h"
 
-
 static char	*fill_line(int fd, char *remainder)
 {
 	char	*buffer;

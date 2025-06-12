@@ -21,14 +21,13 @@
 #  define MAX_FD 1024
 # endif
 
-#include <stdint.h>
-#include <stdlib.h>
-#include <unistd.h>
 # include <limits.h>
 # include <stdarg.h>
 # include <stddef.h>
+# include <stdint.h>
 # include <stdio.h>
-
+# include <stdlib.h>
+# include <unistd.h>
 
 //-------------------------
 // - ctype.h -
@@ -101,20 +100,20 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 // - Printf -
 //-------------------------
 
-int	ft_printf(const char *str, ...);
-int	ft_print_str(char *str);
-int	ft_print_dec(int nbr);
-int	ft_print_char(char c);
-int	ft_print_udec(unsigned int nbr);
-int	ft_print_hex(unsigned long nbr, char *base);
-int	ft_print_ptr(void *ptr);
+int					ft_printf(const char *str, ...);
+int					ft_print_str(char *str);
+int					ft_print_dec(int nbr);
+int					ft_print_char(char c);
+int					ft_print_udec(unsigned int nbr);
+int					ft_print_hex(unsigned long nbr, char *base);
+int					ft_print_ptr(void *ptr);
 
 //-------------------------
 // - Get next Line -
 //-------------------------
-char	*get_next_line(int fd);
-int		found_new_line(char *remainder);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*extract_line(char *remainder);
-char	*update_remainder(char *remainder);
+char				*get_next_line(int fd);
+int					found_new_line(char *remainder);
+char				*ft_strjoin(char const *s1, char const *s2);
+char				*extract_line(char *remainder);
+char				*update_remainder(char *remainder);
 #endif

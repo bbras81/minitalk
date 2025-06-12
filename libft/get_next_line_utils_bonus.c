@@ -12,7 +12,6 @@
 
 #include "libft.h"
 
-
 int	found_new_line(char *remainder)
 {
 	int	counter;
