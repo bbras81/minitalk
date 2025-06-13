@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "minitalk.h"
 
 void	sending_signals(int pid, char *message)
 {
@@ -52,7 +49,7 @@ int	main(int argc, char **argv)
 		printf("Usage: %s <server_pid> <message>\n", argv[0]);
 		return (1);
 	}
-	server_pid = atoi(argv[1]);
+	server_pid = ft_atoi(argv[1]);
 	if (server_pid <= 0)
 		return (1);
 	message = argv[2];
@@ -60,5 +57,5 @@ int	main(int argc, char **argv)
 		return (1);
 	sending_signals(server_pid, message);
 	printf("Message sent to PID %d\n", server_pid);
-	return (0);
+	return EXIT_SUCCESS;
 }

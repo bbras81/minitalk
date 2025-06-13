@@ -16,4 +16,8 @@
 # include "libft/libft.h"
 # include <signal.h>
 # include <unistd.h>
+# include <stdlib.h>
+
+
+int	ft_atoi(const char *nptr);
 #endif

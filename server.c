@@ -42,5 +42,5 @@ int	main(void)
 	sigaction(SIGUSR2, &signal_rec, NULL);
 	while (1)
 		pause();
-	return (0);
+	return (EXIT_SUCCESS);
 }
