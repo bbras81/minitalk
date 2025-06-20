@@ -3,43 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunmigu <brunmigu@students.42porto.com>   +#+  +:+       +#+        */
+/*   By: brunmigu <brunmigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 11:42:06 by brunmigu          #+#    #+#             */
-/*   Updated: 2025/06/10 11:50:25 by brunmigu         ###   ########.fr       */
+/*   Created: 2025/06/13 11:48:52 by brunmigu          #+#    #+#             */
+/*   Updated: 2025/06/16 10:22:02 by brunmigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+#include <signal.h>
+#include <unistd.h>
 
-void	handler_signal(int signum)
+void	handler(int signo, siginfo_t *info, void *more_info)
 {
-	static unsigned char	current_char = 0;
-	static int				bit_index = 0;
+	static char		chr;
+	static int		bit;
+	static pid_t	client;
 
-	current_char <<= 1;
-	if (signum == SIGUSR2)
-		current_char |= 1;
-	bit_index++;
-	if (bit_index == 8)
+	client = info->si_pid;
+	(void)more_info;
+	if (signo == SIGUSR1)
+		chr |= (0b10000000 >> bit);
+	else if (signo == SIGUSR2)
+		chr |= ~(0b10000000);
+	++bit;
+	if (bit == CHAR_BIT)
 	{
-		write(1, &current_char, 1);
-		current_char = 0;
-		bit_index = 0;
+		bit = 0;
+		if (chr == '\0')
+		{
+			write(STDOUT_FILENO, "\n", 1);
+			Kill(client, SIGUSR2);
+			return ;
+		}
+		write(STDOUT_FILENO, &chr, 1);
 	}
+	kill(client, SIGUSR1);
 }
 
 int	main(void)
 {
-	struct sigaction	signal_rec;
-
-	ft_printf("Welcome to brunmigu's Server :-)\n");
-	ft_printf("Server PID: %d\n", getpid());
-	signal_rec.sa_handler = handler_signal;
-	signal_rec.sa_flags = SA_RESTART;
-	sigemptyset(&signal_rec.sa_mask);
-	sigaction(SIGUSR1, &signal_rec, NULL);
-	sigaction(SIGUSR2, &signal_rec, NULL);
+	ft_printf("Server Running and listen...\n");
+	ft_printf("Server PID %d\n", getpid());
+	Signal(SIGUSR1, handler, true);
+	Signal(SIGUSR2, handler, true);
 	while (1)
 		pause();
 	return (EXIT_SUCCESS);

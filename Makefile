@@ -14,13 +14,13 @@ NAME_CLIENT = client
 NAME_SERVER = server
 
 SRCS_CLIENT = client.c
-SRCS_SERVER = server.c
+SRCS_SERVER = server.c utils.c
 
 OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
 OBJS_SERVER = $(SRCS_SERVER:.c=.o)
 
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -g #-Wall -Wextra -Werror
 INCLUDE = -Ilibft
 RM      = rm -f
 
