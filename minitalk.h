@@ -21,6 +21,12 @@
 # include <sys/types.h>
 # include <unistd.h>
 
+enum
+{
+	READY,
+	BUSY,
+};
+
 int		ft_atoi(const char *nptr);
 int		ft_printf(const char *str, ...);
 void	Signal(int, void *, bool);
