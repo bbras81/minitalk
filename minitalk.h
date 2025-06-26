@@ -15,15 +15,16 @@
 
 # include "libft/libft.h"
 # include <signal.h>
+# include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdbool.h>
 
 enum
 {
 	READY,
 	BUSY,
 };
-int	ft_printf(const char *str, ...);
-int	ft_atoi(const char *nptr);
+void	my_signal_func(int signal, void *handler, bool use_siginfo);
+int		ft_printf(const char *str, ...);
+int		ft_atoi(const char *nptr);
 #endif

@@ -12,12 +12,23 @@
 
 #include "minitalk.h"
 
-void my_signal_func(int signal, void *handler, bool use_siginfo)
+void	my_signal_func(int signal, void *handler, bool use_siginfo)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	if (use_siginfo)
 	{
-		sa.sa_flags =
+		sa.sa_flags = SA_SIGINFO;
+		sa.sa_sigaction = handler;
+	}
+	else
+		sa.sa_handler = handler;
+	sigemptyset(&sa.sa_mask);
+	sigaddset(&sa.sa_mask, SIGUSR1);
+	sigaddset(&sa.sa_mask, SIGUSR2);
+	if (sigaction(signal, &sa, NULL) < 0)
+	{
+		perror("Sigaction Feild");
+		exit(EXIT_FAILURE);
 	}
 }
