@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		printf("Usage: %s <server_pid> <message>\n", argv[0]);
+		ft_printf("Usage: %s <server_pid> <message>\n", argv[0]);
 		return (1);
 	}
 	server_pid = ft_atoi(argv[1]);
@@ -56,6 +56,6 @@ int	main(int argc, char **argv)
 	if (message[0] == '\0')
 		return (1);
 	sending_signals(server_pid, message);
-	printf("Message sent to PID %d\n", server_pid);
-	return EXIT_SUCCESS;
+	ft_printf("Message sent to PID %d\n", server_pid);
+	return (EXIT_SUCCESS);
 }

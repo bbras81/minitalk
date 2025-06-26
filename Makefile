@@ -20,7 +20,7 @@ OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
 OBJS_SERVER = $(SRCS_SERVER:.c=.o)
 
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror
+CFLAGS  = -g #-Wall -Wextra -Werror
 INCLUDE = -Ilibft
 RM      = rm -f
 
