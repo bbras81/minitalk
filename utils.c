@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brunmigu <brunmigu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 13:13:23 by brunmigu          #+#    #+#             */
-/*   Updated: 2025/06/26 13:44:36 by brunmigu         ###   ########.fr       */
+/*   Created: 2025/06/26 13:42:17 by brunmigu          #+#    #+#             */
+/*   Updated: 2025/06/26 15:28:17 by brunmigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "minitalk.h"
 
-# include "libft/libft.h"
-# include <signal.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdbool.h>
-
-enum
+void my_signal_func(int signal, void *handler, bool use_siginfo)
 {
-	READY,
-	BUSY,
-};
-int	ft_printf(const char *str, ...);
-int	ft_atoi(const char *nptr);
-#endif
+	struct sigaction sa;
+
+	if (use_siginfo)
+	{
+		sa.sa_flags =
+	}
+}
