@@ -12,31 +12,25 @@
 
 #include "minitalk.h"
 
-void	sending_signals(int pid, char *message)
+void	sending_signals(int pid, char message)
 {
 	int	i;
-	int	letter;
 
-	letter = 0;
-	while (message[letter])
+	while (++i < 8)
 	{
-		i = -1;
-		while (++i < 8)
-		{
-			if (((unsigned char)(message[letter] >> (7 - i)) & 1) == 0)
-				kill(pid, SIGUSR1);
-			else
-				kill(pid, SIGUSR2);
-			usleep(200);
-		}
-		letter++;
-	}
-	i = 0;
-	while (i++ < 8)
-	{
-		kill(pid, SIGUSR1);
+		if (((unsigned char)(message >> (7 - i)) & 1) == 0)
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
 		usleep(200);
 	}
+}
+i = 0;
+while (i++ < 8)
+{
+	kill(pid, SIGUSR1);
+	usleep(200);
+}
 }
 
 int	main(int argc, char **argv)
@@ -55,8 +49,8 @@ int	main(int argc, char **argv)
 	message = argv[2];
 	if (message[0] == '\0')
 		return (1);
-	sending_signals(server_pid, message);
-   
+	while (*message)
+		sending_signals(server_pid, *message++);
 	ft_printf("Message sent to PID %d\n", server_pid);
 	return (EXIT_SUCCESS);
 }
