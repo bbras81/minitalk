@@ -56,6 +56,7 @@ int	main(int argc, char **argv)
 	if (message[0] == '\0')
 		return (1);
 	sending_signals(server_pid, message);
+   
 	ft_printf("Message sent to PID %d\n", server_pid);
 	return (EXIT_SUCCESS);
 }
