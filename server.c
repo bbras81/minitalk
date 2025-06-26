@@ -16,7 +16,9 @@ void	sig_handler(int signum, siginfo_t *info, void *ucontext)
 {
 	static unsigned char	current_char = 0;
 	static int				bit_index = 0;
+	static pid_t			client_pid;
 
+	client_pid = info->si_pid;
 	(void)ucontext;
 	current_char <<= 1;
 	if (signum == SIGUSR2)
@@ -28,6 +30,7 @@ void	sig_handler(int signum, siginfo_t *info, void *ucontext)
 		current_char = 0;
 		bit_index = 0;
 	}
+	kill(client_pid, SIGUSR1);
 }
 
 int	main(void)

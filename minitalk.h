@@ -15,9 +15,13 @@
 
 # include "libft/libft.h"
 # include <signal.h>
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
 
-
+enum
+{
+	READY,
+	BUSY,
+};
 int	ft_atoi(const char *nptr);
 #endif

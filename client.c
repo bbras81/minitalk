@@ -11,6 +11,16 @@
 /* ************************************************************************** */
 
 #include "minitalk.h"
+#include <unistd.h>
+
+volatile sig_atomic_t	g_client = BUSY;
+void	c_handler(int sig)
+{
+	if (sig == SIGUSR1)
+	{
+		g_client = READY;
+	}
+}
 
 void	sending_signals(int pid, char message)
 {
@@ -23,21 +33,25 @@ void	sending_signals(int pid, char message)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(200);
+		while (g_client == BUSY)
+			usleep(42);
 	}
 	i = 0;
 	while (i++ < 8)
 	{
 		kill(pid, SIGUSR1);
-		usleep(200);
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	int		server_pid;
-	char	*message;
+	int					server_pid;
+	char				*message;
+	struct sigaction	sa;
 
+	sa.sa_handler = c_handler;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
 	if (argc != 3)
 	{
 		ft_printf("Usage: %s <server_pid> <message>\n", argv[0]);
@@ -49,6 +63,8 @@ int	main(int argc, char **argv)
 	message = argv[2];
 	if (message[0] == '\0')
 		return (EXIT_FAILURE);
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (*message)
 		sending_signals(server_pid, *message++);
 	ft_printf("Message sent to PID %d\n", server_pid);
