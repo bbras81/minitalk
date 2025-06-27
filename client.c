@@ -6,7 +6,7 @@
 /*   By: brunmigu <brunmigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:49:06 by brunmigu          #+#    #+#             */
-/*   Updated: 2025/06/27 09:43:34 by brunmigu         ###   ########.fr       */
+/*   Updated: 2025/06/27 09:50:01 by brunmigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	send_char(char chr, pid_t server)
 	bit = -1;
 	while (++bit < CHAR_BIT)
 	{
-		if (((unsigned char)(chr >> (7-bit)) & 1) == 1)
+		if (((unsigned char)(chr >> (7 - bit)) & 1) == 1)
 			kill(server, SIGUSR1);
 		else
 			kill(server, SIGUSR2);

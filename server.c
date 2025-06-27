@@ -21,7 +21,7 @@ void	handler(int signal, siginfo_t *info, void *more_info)
 	chr <<= 1;
 	if (signal == SIGUSR1)
 		chr |= 1;
-	bit ++;
+	bit++;
 	if (bit == CHAR_BIT)
 	{
 		bit = 0;
