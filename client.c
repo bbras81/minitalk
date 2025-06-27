@@ -3,30 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunmigu <brunmigu@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: brunmigu <brunmigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:49:06 by brunmigu          #+#    #+#             */
-/*   Updated: 2025/06/26 13:24:55 by brunmigu         ###   ########.fr       */
+/*   Updated: 2025/06/27 09:43:34 by brunmigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <signal.h>
-#include <unistd.h>
 
 void	send_char(char chr, pid_t server)
 {
 	int	bit;
 
-	bit = 0;
-	while (bit < CHAR_BIT)
+	bit = -1;
+	while (++bit < CHAR_BIT)
 	{
-		if (chr & (0b10000000 >> bit))
+		if (((unsigned char)(chr >> (7-bit)) & 1) == 1)
 			kill(server, SIGUSR1);
 		else
 			kill(server, SIGUSR2);
 		usleep(100);
-		++bit;
 	}
 }
 

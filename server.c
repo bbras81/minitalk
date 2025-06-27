@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunmigu <brunmigu@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: brunmigu <brunmigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:49:36 by brunmigu          #+#    #+#             */
-/*   Updated: 2025/06/26 13:39:52 by brunmigu         ###   ########.fr       */
+/*   Updated: 2025/06/27 09:38:39 by brunmigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	handler(int signal, siginfo_t *info, void *more_info)
 	static char	chr;
 	static int	bit;
 
-	// static pid_t	client;
 	(void)more_info;
+	chr <<= 1;
 	if (signal == SIGUSR1)
-		chr |= (0b10000000 >> bit);
-	++bit;
+		chr |= 1;
+	bit ++;
 	if (bit == CHAR_BIT)
 	{
 		bit = 0;
