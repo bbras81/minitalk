@@ -6,7 +6,7 @@
 /*   By: brunmigu <brunmigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:49:36 by brunmigu          #+#    #+#             */
-/*   Updated: 2025/06/27 09:38:39 by brunmigu         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:12:41 by brunmigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	handler(int signal, siginfo_t *info, void *more_info)
 	static int	bit;
 
 	(void)more_info;
+	(void)info;
 	chr <<= 1;
 	if (signal == SIGUSR1)
 		chr |= 1;

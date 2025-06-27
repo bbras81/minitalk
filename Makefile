@@ -5,38 +5,42 @@
 #                                                     +:+ +:+         +:+      #
 #    By: brunmigu <brunmigu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/06/06 14:03:38 by brunmigu          #+#    #+#              #
-#    Updated: 2025/06/10 06:09:09 by brunmigu         ###   ########.fr        #
+#    Created: 2025/06/27 10:17:38 by brunmigu          #+#    #+#              #
+#    Updated: 2025/06/27 10:37:30 by brunmigu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME_CLIENT = client
-NAME_SERVER = server
+SRCS_MANDATORY = client.c server.c utils.c
+SRCS_BONUS = client_bonus.c server_bonus.c utils_bonus.c
 
-SRCS_CLIENT = client.c
-SRCS_SERVER = server.c utils.c
-
-OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
-OBJS_SERVER = $(SRCS_SERVER:.c=.o)
+OBJS_MANDATORY = $(SRCS_MANDATORY:.c=.o)
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 CC      = cc
-CFLAGS  = -g #-Wall -Wextra -Werror
+CFLAGS  = -g -Wall -Wextra -Werror
 INCLUDE = -Ilibft
 RM      = rm -f
 
-# Se usares a libft, descomenta as linhas seguintes
 LIBFT_DIR = ./libft
 LIBFT_A = $(LIBFT_DIR)/libft.a
 
-all: $(NAME_CLIENT) $(NAME_SERVER)
+all: server client server_bonus client_bonus
 
-$(NAME_CLIENT): $(OBJS_CLIENT) $(LIBFT_A)
-	@$(CC) $(CFLAGS) $(OBJS_CLIENT) $(LIBFT_A) -o $(NAME_CLIENT)
-	@echo "✅ $(NAME_CLIENT) compilado com sucesso!"
+server: server.o utils.o $(LIBFT_A)
+	@$(CC) $(CFLAGS) server.o utils.o $(LIBFT_A) -o server
+	@echo "✅ server compilado com sucesso!"
 
-$(NAME_SERVER): $(OBJS_SERVER) $(LIBFT_A)
-	@$(CC) $(CFLAGS) $(OBJS_SERVER) $(LIBFT_A) -o $(NAME_SERVER)
-	@echo "✅ $(NAME_SERVER) compilado com sucesso!"
+client: client.o utils.o $(LIBFT_A)
+	@$(CC) $(CFLAGS) client.o utils.o $(LIBFT_A) -o client
+	@echo "✅ client compilado com sucesso!"
+
+server_bonus: server_bonus.o utils_bonus.o $(LIBFT_A)
+	@$(CC) $(CFLAGS) server_bonus.o utils_bonus.o $(LIBFT_A) -o server_bonus
+	@echo "✅ server_bonus compilado com sucesso!"
+
+client_bonus: client_bonus.o utils_bonus.o $(LIBFT_A)
+	@$(CC) $(CFLAGS) client_bonus.o utils_bonus.o $(LIBFT_A) -o client_bonus
+	@echo "✅ client_bonus compilado com sucesso!"
 
 $(LIBFT_A):
 	@$(MAKE) -C $(LIBFT_DIR)
@@ -46,12 +50,12 @@ $(LIBFT_A):
 	@echo "🔧 Compilado: $< → $@"
 
 clean:
-	@$(RM) $(OBJS_CLIENT) $(OBJS_SERVER)
+	@$(RM) $(OBJS_MANDATORY) $(OBJS_BONUS)
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@echo "🧹 Objetos removidos!"
 
 fclean: clean
-	@$(RM) $(NAME_CLIENT) $(NAME_SERVER)
+	@$(RM) server client server_bonus client_bonus
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@echo "🔥 Executáveis removidos!"
 
@@ -59,4 +63,3 @@ re: fclean all
 	@echo "♻️  Projeto recompilado do zero!"
 
 .PHONY: all clean fclean re
-

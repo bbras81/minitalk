@@ -18,6 +18,7 @@ void	handler(int signal, siginfo_t *info, void *more_info)
 	static int	bit;
 
 	(void)more_info;
+	(void)info;
 	chr <<= 1;
 	if (signal == SIGUSR1)
 		chr |= 1;
