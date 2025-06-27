@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunmigu <brunmigu@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: brunmigu <brunmigu@students.42porto.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 13:13:23 by brunmigu          #+#    #+#             */
-/*   Updated: 2025/06/26 13:44:36 by brunmigu         ###   ########.fr       */
+/*   Created: 2025/06/27 10:06:57 by brunmigu          #+#    #+#             */
+/*   Updated: 2025/06/27 10:06:59 by brunmigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+enum
+{
+	READY,
+	BUSY,
+};
 void	my_signal_func(int signal, void *handler, bool use_siginfo);
 int		ft_printf(const char *str, ...);
 int		ft_atoi(const char *nptr);
