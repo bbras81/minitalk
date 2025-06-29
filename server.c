@@ -12,7 +12,7 @@
 
 #include "minitalk.h"
 
-void	handler(int signal, siginfo_t *info, void *more_info)
+static void	handler(int signal, siginfo_t *info, void *more_info)
 {
 	static char	chr;
 	static int	bit;

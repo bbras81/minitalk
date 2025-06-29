@@ -12,7 +12,7 @@
 
 #include "minitalk.h"
 
-void	send_char(char chr, pid_t server)
+static void	send_char(char chr, pid_t server)
 {
 	int	bit;
 
