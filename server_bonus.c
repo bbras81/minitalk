@@ -3,22 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunmigu <brunmigu@students.42porto.com>   +#+  +:+       +#+        */
+/*   By: brunmigu <brunmigu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 10:07:18 by brunmigu          #+#    #+#             */
-/*   Updated: 2025/06/27 10:07:22 by brunmigu         ###   ########.fr       */
+/*   Updated: 2025/06/29 12:27:11 by brunmigu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	handler(int signal, siginfo_t *info, void *more_info)
+static void	handler(int signal, siginfo_t *info, void *more_info)
 {
-	static char	chr;
-	static int	bit;
+	static char		chr = 0;
+	static int		bit = 0;
+	static pid_t	client = 0;
 
 	(void)more_info;
-	(void)info;
+	if (info->si_pid)
+		client = info->si_pid;
 	chr <<= 1;
 	if (signal == SIGUSR1)
 		chr |= 1;
@@ -28,11 +30,15 @@ void	handler(int signal, siginfo_t *info, void *more_info)
 		bit = 0;
 		if (chr == '\0')
 		{
-			write(STDOUT_FILENO, "\n", 1);
+			write(1, "\n", 1);
+			kill(client, SIGUSR2);
+			chr = 0;
 			return ;
 		}
-		write(STDOUT_FILENO, &chr, 1);
+		write(1, &chr, 1);
+		chr = 0;
 	}
+	kill(client, SIGUSR1); // ACK
 }
 
 int	main(void)

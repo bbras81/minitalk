@@ -10,22 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void	my_signal_func(int signal, void *handler, bool use_siginfo)
 {
 	struct sigaction	sa;
 
-	if (use_siginfo)
-	{
-		sa.sa_flags = SA_SIGINFO;
-		sa.sa_sigaction = handler;
-	}
-	else
-		sa.sa_handler = handler;
 	sigemptyset(&sa.sa_mask);
 	sigaddset(&sa.sa_mask, SIGUSR1);
 	sigaddset(&sa.sa_mask, SIGUSR2);
+	if (use_siginfo)
+	{
+		sa.sa_sigaction = handler;
+		sa.sa_flags = SA_SIGINFO;
+	}
+	else
+	{
+		sa.sa_handler = (void (*)(int))handler;
+		sa.sa_flags = 0;
+	}
 	if (sigaction(signal, &sa, NULL) < 0)
 	{
 		perror("Sigaction Feild");
