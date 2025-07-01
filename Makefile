@@ -26,6 +26,10 @@ LIBFT_A = $(LIBFT_DIR)/libft.a
 
 all: server client server_bonus client_bonus
 
+mandatory: server client
+
+bonus: server_bonus client_bonus
+
 server: server.o utils.o $(LIBFT_A)
 	@$(CC) $(CFLAGS) server.o utils.o $(LIBFT_A) -o server
 	@echo "✅ server compilado com sucesso!"
@@ -62,4 +66,4 @@ fclean: clean
 re: fclean all
 	@echo "♻️  Projeto recompilado do zero!"
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re mandatory bonus
