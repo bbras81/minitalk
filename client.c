@@ -17,9 +17,9 @@ static void	send_char(int nbr, pid_t server)
 	int	bit;
 
 	bit = 0;
-	while (bit < 32)
+	while (bit < 8)
 	{
-		if (((unsigned int)nbr >> (31 - bit)) & 1)
+		if (((unsigned int)nbr >> (7 - bit)) & 1)
 			kill(server, SIGUSR1);
 		else
 			kill(server, SIGUSR2);

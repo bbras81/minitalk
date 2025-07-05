@@ -31,6 +31,10 @@ static void	handler(int signal, siginfo_t *info, void *more_info)
 		bit = 0;
 		len = 0;
 	}
+	if (bit == 8)
+	{
+    
+	}
 }
 
 int	main(void)
