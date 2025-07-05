@@ -17,7 +17,7 @@ OBJS_MANDATORY = $(SRCS_MANDATORY:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 CC      = cc
-CFLAGS  = -g -Wall -Wextra -Werror
+CFLAGS  = -g #-Wall -Wextra -Werror
 INCLUDE = -Ilibft
 RM      = rm -f
 
@@ -25,6 +25,8 @@ LIBFT_DIR = ./libft
 LIBFT_A = $(LIBFT_DIR)/libft.a
 
 all: server client server_bonus client_bonus
+
+mandatory: server client
 
 server: server.o utils.o $(LIBFT_A)
 	@$(CC) $(CFLAGS) server.o utils.o $(LIBFT_A) -o server

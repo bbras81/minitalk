@@ -38,7 +38,7 @@ static void	handler(int signal, siginfo_t *info, void *more_info)
 		write(1, &chr, 1);
 		chr = 0;
 	}
-	kill(client, SIGUSR1); // ACK
+	kill(client, SIGUSR1);
 }
 
 int	main(void)
