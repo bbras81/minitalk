@@ -108,12 +108,4 @@ int					ft_print_udec(unsigned int nbr);
 int					ft_print_hex(unsigned long nbr, char *base);
 int					ft_print_ptr(void *ptr);
 
-//-------------------------
-// - Get next Line -
-//-------------------------
-char				*get_next_line(int fd);
-int					found_new_line(char *remainder);
-char				*ft_strjoin(char const *s1, char const *s2);
-char				*extract_line(char *remainder);
-char				*update_remainder(char *remainder);
 #endif

@@ -6,12 +6,12 @@
 #    By: brunmigu <brunmigu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/27 10:17:38 by brunmigu          #+#    #+#              #
-#    Updated: 2025/06/27 10:37:30 by brunmigu         ###   ########.fr        #
+#    Updated: 2025/07/13 11:11:12 by brunmigu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS_MANDATORY = client.c server.c utils.c
-SRCS_BONUS = client_bonus.c server_bonus.c utils_bonus.c
+SRCS_MANDATORY = src/client.c src/server.c utils.c
+SRCS_BONUS = src/client_bonus.c src/server_bonus.c src/utils_bonus.c
 
 OBJS_MANDATORY = $(SRCS_MANDATORY:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
