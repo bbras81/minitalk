@@ -99,13 +99,13 @@ int					ft_print_ptr(void *ptr);
 //-------------------------
 // - Gnl.h -
 //-------------------------
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 5
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
 
-#ifndef MAX_FD
-# define MAX_FD 1024
-#endif
+# ifndef MAX_FD
+#  define MAX_FD 1024
+# endif
 
 char				*get_next_line(int fd);
 int					found_new_line(char *remainder);

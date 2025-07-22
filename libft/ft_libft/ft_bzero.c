@@ -12,7 +12,6 @@
 
 #include "../includes/libft.h"
 
-
 /**
  * @brief Sets a block of memory to zero.
  *

@@ -12,12 +12,12 @@
 
 #include "../includes/minitalk.h"
 
-static volatile sig_atomic_t	ack = 0;
+static volatile sig_atomic_t	g_ack = 0;
 
 static void	ack_handler(int sig)
 {
 	if (sig == SIGUSR1)
-		ack = 1;
+		g_ack = 1;
 	if (sig == SIGUSR2)
 	{
 		ft_printf("✅ Message received by the server!\n");
@@ -39,9 +39,9 @@ void	send_char(pid_t pid, unsigned char c)
 		usleep(100);
 		i--;
 	}
-	while (!ack)
+	while (!g_ack)
 		pause();
-	ack = 0;
+	g_ack = 0;
 }
 
 int	main(int argc, char **argv)

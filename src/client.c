@@ -33,9 +33,9 @@ void	send_char(pid_t pid, unsigned char c)
 		usleep(100);
 		i--;
 	}
-	while (!ack)
-		pause();
-	ack = 0;
+while (!ack)
+	pause();
+ack = 0;
 }
 
 int	main(int argc, char **argv)
@@ -57,6 +57,6 @@ int	main(int argc, char **argv)
 	sigaction(SIGUSR1, &sa, NULL);
 	while (*str)
 		send_char(pid, *str++);
-send_char(pid, '\0');
-return (0);
+	send_char(pid, '\0');
+	return (0);
 }

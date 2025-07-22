@@ -14,23 +14,23 @@
 
 int	ft_print_dec(int nbr)
 {
-  int	counter;
+	int	counter;
 
-  counter = 0;
-  if (nbr == -2147483648)
-    counter += ft_print_str("-2147483648");
-  else
-  {
-    if (nbr < 0)
-    {
-      counter += ft_print_str("-");
-      nbr *= -1;
-    }
-    if (nbr > 9)
-    {
-      counter += ft_print_dec(nbr / 10);
-    }
-    counter += ft_print_char((nbr % 10) + '0');
-  }
-  return (counter);
+	counter = 0;
+	if (nbr == -2147483648)
+		counter += ft_print_str("-2147483648");
+	else
+	{
+		if (nbr < 0)
+		{
+			counter += ft_print_str("-");
+			nbr *= -1;
+		}
+		if (nbr > 9)
+		{
+			counter += ft_print_dec(nbr / 10);
+		}
+		counter += ft_print_char((nbr % 10) + '0');
+	}
+	return (counter);
 }
