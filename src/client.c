@@ -12,18 +12,19 @@
 
 #include "../includes/minitalk.h"
 
-static volatile sig_atomic_t	ack = 0;
+static volatile sig_atomic_t	g_ack = 0;
 
 static void	ack_handler(int sig)
 {
 	(void)sig;
-	ack = 1;
+	g_ack = 1;
 }
 
 void	send_char(pid_t pid, unsigned char c)
 {
-	int	i = 7;
+	int	i;
 
+	i = 7;
 	while (i >= 0)
 	{
 		if ((c >> i) & 1)
@@ -33,9 +34,9 @@ void	send_char(pid_t pid, unsigned char c)
 		usleep(100);
 		i--;
 	}
-while (!ack)
-	pause();
-ack = 0;
+	while (!g_ack)
+		pause();
+	g_ack = 0;
 }
 
 int	main(int argc, char **argv)
