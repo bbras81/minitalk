@@ -50,18 +50,18 @@ static void	handler(int signal, siginfo_t *info, void *context)
 	if (bit == 8)
 	{
 		if (c == '\0')
-		{
-			append_char(c);
-			kill(info->si_pid, SIGUSR2);
-		}
-		else
-		{
-			append_char(c);
-			kill(info->si_pid, SIGUSR1);
-		}
-		bit = 0;
-		c = 0;
-	}
+    {
+	    append_char(c);
+	    kill(info->si_pid, SIGUSR2);
+    }
+    else
+    {
+	    append_char(c);
+	    kill(info->si_pid, SIGUSR1);
+    }
+    bit = 0;
+    c = 0;
+  }
 }
 
 int	main(void)
